@@ -1,3 +1,6 @@
+import { ObjectId } from 'mongodb';
+import { signup } from '../config/mongoCollections';
+
 const exportedMethods = {
     validateEmail(email) {
         let containsSymbol = false;
