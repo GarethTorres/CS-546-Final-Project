@@ -1,24 +1,31 @@
 import { ObjectId } from 'mongodb';
+import validation from './validation.js';
 
-async function searchUserByName(name) {
-  const client = new MongoClient(process.env.MONGODB_URI, { useUnifiedTopology: true });
+const url = 'mongodb://localhost:27017';
+const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+
+async function searchUser(email) {
   try {
+    validation.validEmail(email);
+
     await client.connect();
 
-    const database = client.db(process.env.MONGODB_DB_NAME);
-    const usersCollection = database.collection('users');
+    const database = client.db('mydb');
+    const users = database.collection('users');
 
-    const query = { name: { $regex: `.*${name}.*`, $options: 'i' } };
-    const options = { projection: { _id: 0, name: 1, email: 1 } };
-    const result = await usersCollection.find(query, options).toArray();
+    const user = await users.findOne({ 'id' });
 
-    return result;
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    return user;
   } catch (error) {
-    console.error(error);
-    throw new Error('An error occurred while searching for users');
+    throw error;
   } finally {
     await client.close();
   }
 }
 
-export default { searchUserByName };
+export default searchUser;
+
