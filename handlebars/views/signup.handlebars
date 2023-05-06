@@ -1,1 +1,36 @@
-
+<body>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <p class="welcome">Hi there, Welcome:)!</p>
+            <br>
+            <form id="signup-form" method="post" action="/users/signup">
+                <div class="form-group">
+                    <p class="noPost" for="text1">Username:</p>
+                    <input type="email" class="form-control" id="signupUserName" name="username" placeholder="Your username eg. 123@stevens.com">
+                    <br>
+                    <p class="noPost" for="text1">Nickname:</p >
+                    <input type="text" class="form-control" id="signupNickName" name="nickname" placeholder="Your nickname">
+                    <br>
+                    <p class="noPost" for="text1">Password:</p>
+                    <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Your password">
+                    <br>
+                    <p class="noPost" for="text1">Confirm Password:</p>
+                    <input type="password" class="form-control" id="signupConfirmPassword" name="password" placeholder="Confirm your password">
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn AllButton">Sign up</button>
+                    </div>
+                    {{#unless status}}
+                        <p class="wrongMsg">{{message}}</p>
+                    {{/unless}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</body>
