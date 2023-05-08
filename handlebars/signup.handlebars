@@ -1,35 +1,41 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="/public/frontend/style.css">
-    <title>Signup</title>
-  </head>
-  <body>
-    <h1>Signup</h1>
-    <form method="POST" action="/signup" id="signup-form">
-      <label for="firstNameInput">First Name:</label>
-      <input type="text" id="firstNameInput" name="firstNameInput">
 
-      <label for="lastNameInput">Last Name:</label>
-      <input type="text" id="lastNameInput" name="lastNameInput">
-      
-       <label for="UserIdInput">User Id:</label>
-      <input type="email" id="UserIdInput" name="UserIdInput">
-
-      <label for="emailAddressInput">Email Address:</label>
-      <input type="email" id="emailAddressInput" name="emailAddressInput">
-
-      <label for="passwordInput">Password:</label>
-      <input type="password" id="passwordInput" name="passwordInput">
-
-      <label for="confirmPasswordInput">Confirm Password:</label>
-      <input type="password" id="confirmPasswordInput" name="confirmPasswordInput">
-      
-      <button type="submit">Register</button>
+    <h1 class="signup-title">Sign up your Account Now</h1>
+    <form id = "signup-form" action = "/signup" method = "POST">
+        <div class="form-group-firstname">
+            <label for="firstNameSignUp">Enter Your First Name Here</label>
+            <input type="text" class="form-control" id="firstNameSignUp" name="firstName" placeholder="First Name">
+        </div>
+        <div class="form-group-lastnameSignUp">
+            <label for="lastNameSignUp">Enter Your Last Name here!</label>
+            <input type="text" class="form-control" id="lastNameSignUp" name="lastName" placeholder="Last Name">
+        </div>
+        <div class="form-group-userid">
+            <label for="usernameSignUp">Enter Your Username Here</label>
+            <input type="text" class="form-control" id="useridSignUp" name="userid" placeholder="UserId">
+        </div>
+        <div class="form-group-password">
+            <label for="passwordSignUp">Enter Your Password here!<br/> (At least 8 characters, 1 capital letter, and 1 number)</label>
+            <input type="password" class="form-control" id="passwordSignUp" name="password" placeholder="Password">
+        </div>
+        <div class="form-group-email">
+            <label for="emailSignUp">Enter Your E-Mail Here!</label>
+            <input type="text" class="form-control" id="emailSignUp" name="email" placeholder="E-mail Address">
+        </div>
+        <div class="form-group-birthday">
+            <label for="dateOfBirthSignUp">Enter Your Birthday Here</label>
+            <input type="date" class="form-control" id="dateOfBirthSignUp" name="dateOfBirth">
+        </div>
+        <input type="submit" class="btn btn-default" value = "Submit">
+      <div class="form-group">
+        <div class="alert alert-danger" hidden>
+          
+          <ul id = "results">
+            <li class = "errormessage">{{error}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="success alert-success" hidden>
+      </div>
     </form>
-      <div class="error">{{errorMessage}}</div>
-    <div id="client-error" hidden></div>
-    <script src="/handlebars/js/CS-546-Final-Project.js"></script>
-  </body>
-</html>
-
+    <footer>&copy; 2023 My Showcase. All rights reserved.</footer>
+    <script src="/public/js/signup.js"></script>
