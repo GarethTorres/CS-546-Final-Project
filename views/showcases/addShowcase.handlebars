@@ -1,0 +1,24 @@
+<div class="add-showcase">
+    <h1>Display your Talent!</h1>
+    <div id="errorDiv">
+    </div>
+    <form id="addShowcaseForm">
+        <label>Showcase Text
+            <br />
+            <textarea id="addShowcaseText" placeholder="Your text here"></textarea>
+        </label>
+        <br />
+        <label>Blog (Optional)
+            <br />
+            <select id="addshowcaseBlog" class="form-control">
+                <option value="None">None</option>
+                {{#each allBlogs}}
+                <option value="{{this.[1]}}">{{this.[0]}}</option>
+                {{/each}}
+            </select>
+        </label>
+        <br />
+        <input type="submit" value="Add Showcase" class="btn btn-primary mb-2" />
+    </form>
+    <div id="successDiv" hidden></div>
+</div>
