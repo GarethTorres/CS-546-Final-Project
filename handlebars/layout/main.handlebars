@@ -62,5 +62,59 @@
                         <button type="button" onclick="window.location.href='/users/signout'" class="btn AllButton navbar-btn">Sign out</button>
                     {{else}}
                         <button type="button" onclick="window.location.href='/users/signin'" class="btn btn-default navbar-btn">Sign in</button>
-                        <button type="button" onclick="window.location.href='/
+                        <button type="button" onclick="window.location.href='/users/signup'" class="btn AllButton navbar-btn">Sign up</button>
+                    {{/if}}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Welcome to the Showcase Website!</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Upload Your Showcase</h3>
+                {{#if userLogin}}
+                    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">Select File</label>
+                            <input type="file" id="file" name="file" required>
+                        </div>
+                        <button type="submit" class="btn AllButton">Upload</button>
+                    </form>
+                {{else}}
+                    <p>Please <a href="/users/signin">sign in</a> to upload your showcase.</p>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Showcase List</h3>
+                <ul>
+                    {{#each showcases}}
+                        <li>{{this.title}} - {{this.description}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+
+    </div><!-- /.container -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
