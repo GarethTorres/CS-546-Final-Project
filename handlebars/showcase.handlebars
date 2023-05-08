@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Showcase Website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#" class="logo">My Showcase</a>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="./createshowcase.html">Create</a></li>
+      </ul>
+    </nav>
+    <div class="search">
+      <input type="text" placeholder="Search showcases...">
+      <button type="submit">Search</button>
+    </div>
+  </header>
+  <section class="featured">
+    <h2>Featured Showcases</h2>
+    <div class="showcases">
+      {{#each showcases}}
+        <!-- showcase items go here -->
+      {{/each}}
+    </div>
+  </section>
+  <section class="tags">
+    <h2>Popular Tags</h2>
+    <ul>
+      {{#each popularTags}}
+        <li><a href="#">{{this}}</a></li>
+      {{/each}}
+    </ul>
+  </section>
+  <div class="cta">
+    <h2>Join Our Community</h2>
+    <p>Sign up or log in to start sharing your own showcases.</p>
+    <div class="cta-buttons">
+      <a href="./signup.html" class="button sign-up">Sign up</a>
+      <a href="./login.html" class="button log-in">Log in</a>
+    </div>    
+  </div>
+</body>
+</html>
+
