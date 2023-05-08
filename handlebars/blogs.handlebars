@@ -1,0 +1,35 @@
+<div class="search-container">
+    <h1 class="search-title">Search by Hobies</h1>
+    <p class="search-info">Enter your Hobby and we will show you the people with similar interests on our platform!</p>
+    <form method="POST" action="/search/blog" id="search-form">
+        <label for="hobby">Hobby:</label>
+        <input id="hobby" name="hobby" type="text" value={{searchTerm}}>
+        <input class="btn btn-primary btn-sm mb-1" id="search-submit" type="submit">
+        <div id="errors">
+        {{#if errors}} 
+            {{#each errors}}
+                <p class="error-item">{{this}}</p>
+            {{/each}}
+        {{/if}}
+        </div>
+    </form>
+    {{#if blogs}} 
+    <div id="result-list">
+        {{#each blogs}}
+            <div class="post blog-box">
+                <h1 class="list-item-info">{{this.blogName}}</h1>
+                <p class="list-item-info">Hobies: {{this.hobby}}</p>
+               %% <p class="list-item-info">A {{this.A}}</p>
+               %% <p class="list-item-info">B {{this.B}}</p>
+                %% <p class="list-item-info">C {{this.C}}</p>
+                {{#if this.youtubeLink}}
+                    <a class="list-item-link" href="{{this.youtubeLink}}">Youtube Link</a>
+                {{/if}} 
+            </div>
+        {{/each}}
+    </div>
+    {{/if}}
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+    <script src="/public/js/searchBlog.js"></script>
+</div>
