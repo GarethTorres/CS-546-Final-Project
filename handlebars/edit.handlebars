@@ -1,0 +1,52 @@
+
+    <h1 class="edit-profile-title">Edit your profile!</h1>
+    <form id = "edit-profile-form" method = "POST" action = "/edit/profile/{{userInfo._id}}">
+        <div>
+            <label for="FirstNameEdit">First Name</label>
+            <input type="text" class="form-control" id="FirstNameEdit" value = {{userInfo.FirstName}} name="FirstName" placeholder="First Name">
+        </div>
+        <div>
+            <label for="LastNameEdit">Last Name</label>
+            <input type="text" class="form-control" value = {{userInfo.LastName}} id="LastNameEdit" name="LastName" placeholder="Last Name">
+        </div>
+        <div class="UserDdEdit">
+            <label for="usernameEdit">UserId</label>
+            <input type="text" class="form-control" value ={{userInfo.UserId}} id="UserIdEdit" name="UserId" placeholder="UserId">
+        </div>
+        <div class="form-group-email">
+            <label for="emailEdit">E-Mail</label>
+            <input type="text" class="form-control" value = {{userInfo.email}} id="emailEdit" name="email" placeholder="E-mail Address">
+        </div>
+        <div class="form-group-birthday">
+            <label for="dateOfBirthEdit">Birthday</label>
+            <input type="text" class="form-control" value = {{userInfo.dateOfBirth}} id="dateOfBirthEdit" name="dateOfBirth" placeholder="mm/dd/yyyy">
+
+        </div>
+        {{#if userInfo.Location}}
+        <div class="form-group-location">
+            <label for="cocktailEdit">Location</label>
+            <input type="text" class="form-control" value={{userInfo.location}} id="locationedit" name="location" placeholder="Location">
+        </div>
+        {{else}}
+        <div class="form-group-artist">
+            <label for="cocktailEdit">Favorite Artist</label>
+            <input type="text" class="form-control" value="" id="favouriteArtistEdit" name="artist" placeholder="Favorite Artist">
+        </div>
+        {{/if}}
+        <input type="submit" id = "submitEdit" class="btn btn-default">
+      <div class="form-group">
+        <div class="alert alert-danger" hidden>
+          
+          <ul id = "results">
+            <li class = "errormessage">{{errors}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="success">
+
+      </div>
+    </form>
+    <div class="userID" hidden>
+      {{userInfo._id}}
+    </div>
+    <script src="/public/js/editProfile.js"></script>
