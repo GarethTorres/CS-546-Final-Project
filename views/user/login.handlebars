@@ -1,0 +1,27 @@
+  <h1 class="login-title">Login</h1>
+  <form class="login-form">
+    <div class="form-group">
+      <label for="username-login">Enter User Id Here!</label>
+      <input type="text" class="form-control" id="userid-login" name="userid" placeholder="Userid">
+    </div>
+    <div class="form-group1">
+      <div class="form-group1">
+        <label for="password-login">Enter Password Here!</label>
+        <input type="password" class="form-control" id="password-login" name="password" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+      <div class="error-group alert alert-danger" hidden>
+          <ul id = "results-login">
+            {{#if errors}}
+              <li>{{errors}}</li>
+            {{/if}}
+          </ul>
+      </div>
+    </div>
+  </form>
+  <form action = "/signup" class="signup-form">
+    <div>Don't have an account? Sign-Up Here!</div>
+    <input type = "submit" class = "btn btn-default" value = "Sign-Up"/>
+  </form>
+  <footer>&copy; Artist Showcase. All rights reserved.</footer>
+  <script src="/public/js/login.js"></script>
