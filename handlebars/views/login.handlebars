@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+    {{/if}}
+    <form method="POST" action="/login">
+        <label for="emailAddressInput">Email address:</label>
+        <input type="email" id="emailAddressInput" name="emailAddressInput" required>
+        <br>
+        <label for="passwordInput">Password:</label>
+        <input type="password" id="passwordInput" name="passwordInput" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
