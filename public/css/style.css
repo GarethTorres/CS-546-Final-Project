@@ -1,0 +1,382 @@
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #282828;
+  overflow: hidden;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.showdetails_blogs {
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+
+/* Make logout button in topnav appear on the right */
+.topnav .logout,
+.topnav .myprofile {
+  float: right;
+}
+
+/* Adjust the topnav logo */
+.topnav .logo {
+  float: left;
+  max-width: 3%;
+  height: auto;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add some margins to the welcome message */
+.welcomeUser {
+  margin-left: 50px;
+}
+
+/* Login error text css */
+.error-text {
+  font-size: 20px;
+}
+
+/* Showcase css */
+.showcase {
+  background: white;
+  padding: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+
+.myDiv h1 {
+  font-size: 30px;
+  color: green;
+  margin-left: 50px;
+}
+
+.profileInfo {
+  margin-left: 50px;
+}
+
+.profileBold {
+  font-weight: bold;
+}
+
+.showcase h1 {
+  font-size: 25px;
+}
+
+.showcase h2 {
+  font-size: 15px;
+}
+
+.showcaseInteraction {
+  padding: 10px;
+}
+
+body {
+  background: #f5f5f5;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+footer {
+  text-align: center;
+}
+
+#fetchMoreShowcases,
+#noMoreShowcases {
+  padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* Add post page CSS */
+.add-showcase {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+.add-showcase label {
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+.add-showcase select {
+  border: 0;
+  width: 500px;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+.add-showcase textarea {
+  width: 500px;
+  height: 150px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+}
+
+#errorDiv p {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+#successDiv {
+  padding-top: 20px;
+  text-align: center;
+}
+
+/* Edit post feed icon styling */
+.showcase h5 {
+  float: left;
+}
+
+.editIcon img {
+  float: right;
+  max-width: 1.5%;
+  height: auto;
+}
+
+.showcase h6 {
+  clear: both;
+}
+
+/* Edit post page CSS */
+.edit-showcase h1:not(.showcaseHyperlink),
+label,
+select,
+form {
+  text-align: center;
+}
+
+.edit-showcase h2 {
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+.login-title {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.login-page {
+  padding-top: 100px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group1 input {
+  max-width: 30%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  margin-bottom: 20px;
+}
+
+.signup-form {
+  margin-bottom: 20px;
+}
+
+.signup-title {
+  text-align: center;
+}
+
+#signup-form input {
+  max-width: 30%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.edit-profile-title {
+  text-align: center;
+}
+
+#edit-profile-form input {
+  max-width: 30%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.edit-post label {
+  margin-top: 50px;
+  font-weight: bold;
+}
+
+.edit-post select {
+  border: 0;
+  width: 500px;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  margin-bottom: 50px;
+}
+
+.edit-post textarea {
+  width: 500px;
+  height: 150px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+}
+
+.edit-post input {
+  margin-bottom: 15px;
+}
+
+/* comment_form styling */
+
+.comment {
+  display: flex;
+  height: 85vh;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.individualComment:hover .comment-delete-icon,
+.individualComment.hover .comment-delete-icon {
+  display: block;
+}
+.comment-delete-icon {
+  display: none;
+  width: 20px;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.comment-img {
+  position: fixed;
+  opacity: 0.1;
+  right: -20px;
+  top: -34px;
+  width: 290px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background: #45a049;
+  border-radius: 4px;
+  color: white;
+  border: 1px solid #347737;
+}
+
+.btn-secondary {
+  background-color: lightgray;
+  color: black;
+  margin-left: 7px;
+}
+
+textarea {
+  width: 500px;
+  height: 150px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 13px;
+  resize: vertical;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+.footer {
+  text-align: right;
+}
+
+/* Comment div styling */
+.commentDiv {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.individualComment {
+  position: relative;
+  transition: 200ms all;
+  padding: 5px 20px;
+  border-radius: 7px;
+}
+.individualComment:hover {
+  background-color: gainsboro;
+}
+.commentUser {
+  font-weight: bold;
+}
+
+.commentText {
+  margin-top: -20px;
+  margin-bottom: 0;
+}
+
+/* 
+
+Here is css for recipe search page 
+
+*/
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error-item {
+  color: red;
+}
+
+.error {
+  color: red;
+}
+
+#blog {
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+.blog-box {
+  width: 300px;
+}
+
+.newblogText {
+  text-align: center;
+}
