@@ -1,0 +1,31 @@
+<div class="comment">
+    <img class="comment-img" src="/public/images/comments.png" alt="">
+    <ul id="comments"
+        class="comments">
+    </ul>
+
+    <h2> Add Comments.....</h2>
+    <form id="comment_form">
+        <div class="form-group">
+            <input hidden="hidden" id="showcaseId" name="showcaseId" value={{showcaseId}}>
+            <input hidden="hidden" id="userId" name="userId" value={{userId}}>
+            <label for="message-text" class="control-label"></label>
+            <textarea
+                name="comment"
+                class="form-control"
+                rows="4"
+                cols="50"
+                id="message-text"
+                placeholder="Say something about this Showcase..."
+            ></textarea>
+        </div>
+        <div class="footer">
+            <button
+                id="addComment"
+                type="submit"
+                class="btn"
+            >Showcase Comment</button>
+        </div>
+        <div id="successDiv" hidden></div>
+    </form>
+</div>
