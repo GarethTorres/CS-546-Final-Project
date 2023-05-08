@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HomePage</title>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</head>
+<body>
+
+<div class="container">
+    <main class="container">
+        <!-- ad banner here, without links -->
+        <div class="row">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="container">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img class="img-ad" src="../../public/images/adadad1.png" alt="...">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="img-ad" src="../../public/images/adadad2.png" alt="...">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="img-ad" src="../../public/images/adadad3.png" alt="...">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="row" style="margin-left: 30px">
+        <!-- live Twitter feed -->
+        <div class="col-sm-4 twitter-part">
+            <a class="twitter-timeline" data-width="300" data-height="1000" href="https://twitter.com/openingceremony?lang=en">Tweets by openingceremony</a>
+        </div>
+        <!-- Posts list here -->
+            <div class="col-sm-8">
+                {{#each postArr}}
+                    <div class="media post-part">
+                        <div class="media-left ">
+                            <div class="photoContainer">
+                                <a href='http://localhost:3000/posts/postInfo/{{this._id}}'>
+                                    <img class="media-object user-Pic" src={{this.photoArr.[0]}}>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading postTopic"><a class="jumpToPost" id={{this._id}} href="#">{{this.topic}}</a></h4>
+                            <p class="AllContent">{{this.content}}</p>
+                        </div>
+                    </div>
+                {{else}}
+                        <div>
+                            <h2 class="noPost">Oops! No post.</h2>
+                        </div>
+                {{/each}}
+            </div>
+        </div>
+        <br/>
+        <hr>
+        <br/>
+
+        <!-- Add new Post -->
+        {{#if userLogin}}
+            <div id="addNewPost">
+            <form id="static-form" method="post" action="http://localhost:3000/homePage/createPost" enctype="multipart/form-data">
+                <div class="row">
+                    <h4 id="Guide">Add new Post here</h4>
+                    <div class="col-sm-8">
+                        <input name="topic" type="text" id="topicId" class="form-control" placeholder="Topic" value="" aria-describedby="basic-addon1">
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="col-sm-8">
+                        <textarea name="content" class="form-control" id="contentId" cols="74" rows="6" placeholder="Say something..." value=""></textarea>
+                    </div>
+                    <div class="all-checkbox col-sm-4">
+                        <br/>
+                        <p class="noPost">Choose "tags" for your post</p>
+                        <p>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check1" value="Men">
+                                <label for="check1">Men</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check2" value="Women">
+                                <label for="check2">Women</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check3" value="Kids">
+                                <label for="check3">Kids</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check4" value="Travel">
+                                <label for="check4">Travel</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check5" value="Hike">
+                                <label for="check5">Hike</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check6" value="Swim">
+                                <label for="check6">Swim</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check7" value="Sports">
+                                <label for="check7">Sports</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check8" value="Party">
+                                <label for="check8">Party</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check9" value="Yoga">
+                                <label for="check9">Yoga</label>
+                            </label>
+                        </p>
+                        <p>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check10" value="Sleepwear">
+                                <label for="check10">Sleepwear</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check11" value="Suit">
+                                <label for="check11">Suit</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check12" value="Dress">
+                                <label for="check12">Dress</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check14" value="Ceremony">
+                                <label for="check14">Ceremony</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check15" value="Spring">
+                                <label for="check15">Spring</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check16" value="Summer">
+                                <label for="check16">Summer</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check17" value="Autumn">
+                                <label for="check17">Autumn</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check18" value="Winter">
+                                <label for="check18">Winter</label>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+
+                <br/>
+                <div>
+                    <label class="btn btn-default fileinput-button">
+                        <span>Choose photos</span>
+                        <input name="photoArr" id="addImg" type="file" accept="image/jpg, image/png, image/jpeg, image/gif, image/tiff" multiple>
+                    </label>
+                    <input id="addNewPostButton" name="submit" type="button" class="btn AllButton" value="Submit" data-toggle="button" aria-pressed="false" autocomplete="off">
+                </div>
+            </form>
+                <p style="margin-top: 3px; color: #b52818" id="picTips"></p>
+        {{else}}
+            <h4 class="noPost" id="addnewPosttip">You must Login to add new post here.</h4>
+        {{/if}}
+    </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script type="text/javascript">
+
+    // This is to transport data in "Add new post"
+    var form = document.getElementById('static-form');
+
+    if(form){
+        var formData = new FormData(form);
+    
+    var file = document.getElementById('addImg')
+
+    // count for photos user has chosen
+    var fileCount = 0;
+    $('#picTips').hide();
+
+    // when user choose photos
+    file.onchange = function () {
+        for (let i = 0; i < this.files.length; i++) {
+            formData.append('photo' + i, this.files[i]); // add photos' path to formData
+            fileCount ++;
+        }
+        if(fileCount == 1){
+            $('#picTips').text('You have chosen '+fileCount+' photo');
+            $('#picTips').show();
+        } else if(fileCount > 1 && fileCount <=3){
+            $('#picTips').text('You have chosen '+fileCount+' photos');
+            $('#picTips').show();
+        } else {
+            $('#picTips').text('You can only upload 3 photos at most');
+            $('#picTips').show();
+        }
+    }
+    }
+
+
+    
+    $('#addNewPostButton').click(function () {
+
+        var xhr = new XMLHttpRequest();//创建 Ajax 对象
+
+        var tagArr = [];
+        $('input[type="checkbox"]:checked').each(function (index) {
+            tagArr[index] = $(this).val();
+        })
+        let JSONData = JSON.stringify(tagArr);
+
+        formData.set('tagArr', JSONData);
+        formData.set("topic", $('#topicId').val());
+        formData.set("content", $('#contentId').val());
+        formData.delete('tag');
+        formData.delete('photoArr');
+
+        xhr.open('post', 'http://localhost:3000/homePage/createPost');
+        xhr.send(formData);
+
+        xhr.onload = function () {//获取服务器端给与客户端的响应数据
+            console.log(xhr.responseText);
+            // alert("Succeed!")
+            var Timeout = setTimeout(function () {
+                window.location.reload();
+            }, 500);
+        }
+    })
+
+    //link to certain post
+    $('.jumpToPost').click(function () {
+
+        var url = `http://localhost:3000/posts/postInfo/${$(this).attr("id")}`;
+
+        console.log(url);
+        var ID = $(this).attr("id");
+        console.log(ID);
+
+        var selector = `#${ID}`
+
+        $(selector).attr('href', url);
+    })
+
+    // if no photos are uploaded, a default photo will display instead
+    $('.user-Pic').each(function () {
+        if(!$(this).attr("src")){
+            $(this).attr("src", "../../public/images/replace.jpg");
+        }
+    })
+</script>
+</body>
+</html>
