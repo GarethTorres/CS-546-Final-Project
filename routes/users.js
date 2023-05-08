@@ -174,9 +174,9 @@ router.post('/account', async (req, res) => {
 		let message4;
 
 		if(e =="Please try another username")message1 ="Please try another username";
-		if(e =="the username is already exisited")message1 ="The username is already exisited";
+		if(e =="the username is already exisited")message1 ="The username already exists";
 		if(e =="Please try another password")message3="Please try another password";
-		if(e =="Password did not match")message3="Password did not match";
+		if(e =="Password did not match")message3="Password does not match";
 		if(e =="Please use different inputs before continue")message4="Please use different inputs before continue";
 		
 		const oldUsername = oldUser.username;
