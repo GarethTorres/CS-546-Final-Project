@@ -102,7 +102,7 @@ router.post('/createShowcase', async (req, res) => {
   
     const form = new formidable.IncomingForm();
   
-    form.uploadDir = path.join(__dirname, '../', 'public', 'images');
+    form.uploadDir = path.join(__dirname, '../', 'public', 'image');
     form.keepExtensions = true;
   
     form.parse(req, async (err, fields, files) => {
@@ -129,16 +129,16 @@ router.post('/createShowcase', async (req, res) => {
         
         if (files.photo0) {
           const fileName = files.photo0.name;
-          const filePath = path.join(__dirname, '..', 'public', 'images', fileName);
+          const filePath = path.join(__dirname, '..', 'public', 'image', fileName);
           await fs.promises.copyFile(files.photo0.path, filePath);
           console.log(fileName)
           photoArr.push(`http://localhost:3000/public/images/${fileName}`);
         }
         if (files.photo1) {
-          photoArr.push("http://localhost:3000/public/images/" + files.photo1.path.split('images\\')[1]);
+          photoArr.push("http://localhost:3000/public/image/" + files.photo1.path.split('image\\')[1]);
         }
         if (files.photo2) {
-          photoArr.push("http://localhost:3000/public/images/" + files.photo2.path.split('images\\')[1]);
+          photoArr.push("http://localhost:3000/public/image/" + files.photo2.path.split('image\\')[1]);
         }
   
         let newShowcase = await showcaseData.createShowcase(
