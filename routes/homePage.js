@@ -132,7 +132,7 @@ router.post('/createShowcase', async (req, res) => {
           const filePath = path.join(__dirname, '..', 'public', 'image', fileName);
           await fs.promises.copyFile(files.photo0.path, filePath);
           console.log(fileName)
-          photoArr.push(`http://localhost:3000/public/images/${fileName}`);
+          photoArr.push(`http://localhost:3000/public/image/${fileName}`);
         }
         if (files.photo1) {
           photoArr.push("http://localhost:3000/public/image/" + files.photo1.path.split('image\\')[1]);
