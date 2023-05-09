@@ -57,13 +57,6 @@
             <div class="col-sm-8">
                 {{#each postArr}}
                     <div class="media post-part">
-                        <div class="media-left ">
-                            <div class="photoContainer">
-                                <a href='http://localhost:3000/showcases/postInfo/{{this._id}}'>
-                                    <img class="media-object user-Pic" src={{this.photoArr.[0]}}>
-                                </a>
-                            </div>
-                        </div>
                         <div class="media-body">
                             <h4 class="media-heading postTopic"><a class="jumpToPost" id={{this._id}} href="#">{{this.topic}}</a></h4>
                             <p class="AllContent">{{this.content}}</p>
@@ -85,7 +78,7 @@
             <div id="addNewPost">
             <form id="static-form" method="post" action="http://localhost:3000/homePage/createShowcase" enctype="multipart/form-data">
                 <div class="row">
-                    <h4 id="Guide">Add new Post here</h4>
+                    <h4 id="Guide">Add new Showcase here</h4>
                     <div class="col-sm-8">
                         <input name="topic" type="text" id="topicId" class="form-control" placeholder="Topic" value="" aria-describedby="basic-addon1">
                     </div>
@@ -147,20 +140,14 @@
                 </div>
 
                 <br/>
-                <div>
-                    <label class="btn btn-default fileinput-button">
-                        <span>Choose photos</span>
-                        <input name="photoArr" id="addImg" type="file" accept="image/jpg, image/png, image/jpeg, image/gif, image/tiff" multiple>
-                    </label>
-                    
-                </div>
+                
                 <div>
                     <input id="addNewPostButton" name="submit" type="submit" class="btn AllButton" value="submit" data-toggle="button" aria-pressed="false" autocomplete="off">
                 </div>
             </form>
                 <p style="margin-top: 3px; color: #b52818" id="picTips"></p>
         {{else}}
-            <h4 class="noPost" id="addnewPosttip">You must Login to add new post here.</h4>
+            <h4 class="noPost" id="addnewPosttip">You must Login to add new showcase here.</h4>
         {{/if}}
     </div>
     </main>
@@ -174,32 +161,7 @@
 
     if(form){
         var formData = new FormData(form);
-    
-    var file = document.getElementById('addImg')
-
-    
-    var fileCount = 0;
     $('#picTips').hide();
-    
-    
-    file.onchange = function () {
-        for (let i = 0; i < this.files.length; i++) {
-            formData.append('photo' + i, this.files[i]); 
-            fileCount ++;
-        }
-        if(fileCount == 1){
-            $('#picTips').text('You have chosen '+fileCount+' photo');
-            $('#picTips').show();
-            
-        } else if(fileCount > 1 && fileCount <=3){
-            $('#picTips').text('You have chosen '+fileCount+' photos');
-            $('#picTips').show();
-        } else {
-            $('#picTips').text('You can only upload 3 photos at most');
-            $('#picTips').show();
-        }
-        
-    }
     }
 
 
@@ -217,13 +179,10 @@
     formData.set("topic", $('#topicId').val());
     formData.set("content", $('#contentId').val());
     formData.delete('tag');
-    formData.delete('photoArr');
     
     
-    var fileInput = document.getElementById('addImg');
-    for (let i = 0; i < fileInput.files.length; i++) {
-        formData.append('photo' + i, fileInput.files[i]);
-    }
+    
+    
     xhr.open('post', 'http://localhost:3000/homePage/createShowcase');
     xhr.send(formData);
     xhr.onload = function () {

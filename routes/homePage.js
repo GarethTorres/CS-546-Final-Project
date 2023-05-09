@@ -101,11 +101,8 @@ router.post('/createShowcase', async (req, res) => {
     }
   
     const form = new formidable.IncomingForm();
-  
-    form.uploadDir = path.join(__dirname, '../', 'public', 'image');
-    form.keepExtensions = true;
-  
-    form.parse(req, async (err, fields, files) => {
+
+    form.parse(req, async (err, fields) => {
       try {
         if (!fields) {
           throw "Data needed to create showcase";
@@ -116,7 +113,9 @@ router.post('/createShowcase', async (req, res) => {
         if (!fields.content) {
           throw "Article needed to create showcase"
         }
-  
+        console.log(fields.topic)
+        console.log(fields.content)
+        
         let tagArr = [];
         if (fields.tagArr) {
           tagArr = JSON.parse(fields.tagArr);
@@ -124,31 +123,16 @@ router.post('/createShowcase', async (req, res) => {
             throw "TagArr should be an array";
           }
         }
-  
-        let photoArr = [];
-        
-        if (files.photo0) {
-          const fileName = files.photo0.name;
-          const filePath = path.join(__dirname, '..', 'public', 'image', fileName);
-          await fs.promises.copyFile(files.photo0.path, filePath);
-          console.log(fileName)
-          photoArr.push(`http://localhost:3000/public/image/${fileName}`);
-        }
-        if (files.photo1) {
-          photoArr.push("http://localhost:3000/public/image/" + files.photo1.path.split('image\\')[1]);
-        }
-        if (files.photo2) {
-          photoArr.push("http://localhost:3000/public/image/" + files.photo2.path.split('image\\')[1]);
-        }
+        console.log(tagArr)
+       
   
         let newShowcase = await showcaseData.createShowcase(
           fields.topic,
           req.session.userId,
           fields.content,
-          photoArr,
           tagArr
         );
-  
+        console.log(newShowcase)
         res.send(newShowcase);
       } catch (error) {
         res.status(404).send(error);
