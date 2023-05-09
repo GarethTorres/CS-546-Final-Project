@@ -1,11 +1,11 @@
-import userData from "./users";
-import showcaseData from "./showcases";
-import commentData from "./comments";
-import reportData from "./reports";
 
-export const data = {
-    users: userData,
-    showcases: showcaseData,
-    comments: commentData,
-    reports: reportData
+import userData from "./users";
+import showcaseData from './showcases';
+import blogData from './blogs';
+import commentData from "./comments";
+export default {
+  users: userData,
+  showcases: showcaseData,
+  blogs: blogData,
+  comments: commentData
 };
