@@ -119,12 +119,12 @@ async function removeComment(showcaseId, commentId) {
         throw new Error('That comment parameter should be proper type (string)');
         // /That comment parameter should be proper type (string). If not, throw an error.
     }
-
+    const showcaseCollection = await showcases();
     await showcaseCollection.removeCommentIdFromShowcase(showcaseId, commentId);
 
     const commentObjId = ObjectId.createFromHexString(commentId);
     const commentCollection = await comments();
-    const deletionInfo = await commentCollection.removeOne({ _id: commentObjId });
+    const deletionInfo = await commentCollection.deleteOne({ _id: commentObjId });
 
     if (deletionInfo.deletedCount === 0) {
         throw new Error(`Could not delete the comment`);

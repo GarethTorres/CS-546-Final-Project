@@ -80,7 +80,7 @@
         <div class="col-sm-4">
             <div class="thumbnail">
                 <div class="caption">
-                    <h3><a href='http://localhost:3000/posts/postInfo/{{this._id}}' class="usercenterTopic">{{this.topic}}</a></h3>
+                    <h3><a href='http://localhost:3000/showcases/showcaseInfo/{{this._id}}' class="usercenterTopic">{{this.topic}}</a></h3>
                     <div style="width: 100%; height: 120px;overflow: hidden">
                         <p>{{this.content}}</p>
                     </div>
@@ -94,9 +94,9 @@
                         <div class="modal fade" id='{{this._id}}1' tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
-                                    <form method="post" action="http://localhost:3000/posts/editContent">
+                                    <form method="post" action="http://localhost:3000/showcases/editContent">
                                         <div class="modal-header">
-                                            <input hidden="hidden" name="postId" value={{this._id}}>
+                                            <input hidden="hidden" name="showcaseId" value={{this._id}}>
                                             <label for={{this._id}} class="control-label"></label>
                                             <textarea name="newContent" class="form-control" rows="7" id={{this._id}}>{{this.content}}</textarea>
                                         </div>
@@ -141,10 +141,10 @@
     for(let i = 0; i < delBtns.length; i++){
         delBtns[i].onclick = function () {
             var xhr = new XMLHttpRequest();
-            xhr.open('post', 'http://localhost:3000/posts/delete');
-            let thisPostId = this.name;
+            xhr.open('post', 'http://localhost:3000/showcases/delete');
+            let thisShowcaseId = this.name;
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-            let s = `postId=${thisPostId}`;
+            let s = `showcaseId=${thisShowcaseId}`;
             xhr.send(s);
 
             xhr.onload = function () {

@@ -15,11 +15,15 @@ router.get('/showcaseInfo/:id', async (req, res) => {
             if (req.session.userId)
                 userLogin = await userData.getUserById(req.session.userId);
         }
-        await showcaseData.addViewCount(req.params.id);//Each time this address is accessed, viewCount++
+       
+        await showcaseData.addViewCount(req.params.id);
+    
         let showcaseInfo = await showcaseData.getShowcaseById(req.params.id);
+        
         let temp = await userData.getUserById(showcaseInfo.userId);
         showcaseInfo.username = temp.username;
         let commentsInfo = [];
+        
         for (let i = 0; i < showcaseInfo.commentIdArr.length; i++) {
             let thisComment = await commentData.getCommentById(showcaseInfo.commentIdArr[i]);
             let commentCreaterInfo = await userData.getUserById(thisComment.userId);
@@ -86,6 +90,7 @@ router.post('/editContent', async (req, res) => {
 });
 
 router.post('/delete',async (req, res) =>{
+    
     try{
         if(!req.session) {
             throw new Error ( 'Delete fail(session required)')
@@ -95,12 +100,15 @@ router.post('/delete',async (req, res) =>{
         if(!req.body.showcaseId) {throw new Error ( 'Delete fail(showcaseid required)')
         }
         let showcaseInfo=await showcaseData.getShowcaseById(req.body.showcaseId);
-        // console.log(showcaseInfo);
+        
+        
         if(showcaseInfo.userId!==req.session.userId){
              throw new Error ( "userId did not match")
         }
         //if not the same user
+        
         let showcaseDelete = await showcaseData.removeShowcase(req.body.showcaseId);
+        console.log(showcaseInfo);
         // res.redirect("http://localhost:3000/users/account");
         res.send(showcaseDelete);
         // if(showcaseDelte)

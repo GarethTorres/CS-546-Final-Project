@@ -16,10 +16,10 @@
                 {{#each allUsers}}
                     <div class="row">
                         <p style="font-size: 20px">Username: <span style="color: #b52818">{{this.username}}</span></p>
-                        <p style="font-size: 20px">PostId-List:
+                        <p style="font-size: 20px">ShowcaseId-List:
                         <ol>
                             {{#each this.posts}}
-                                <li style="font-size: 20px"><a class="PostIdList" href="http://localhost:3000/posts/postInfo/{{this}}">{{this}}</a></li>
+                                <li style="font-size: 20px"><a class="PostIdList" href="http://localhost:3000/showcases/showcaseInfo/{{this}}">{{this}}</a></li>
                             {{/each}}
                         </ol>
                     </div>
@@ -32,13 +32,13 @@
                     <div class="media post-part">
                         <div class="media-left ">
                             <div class="photoContainer">
-                                <a href='http://localhost:3000/posts/postInfo/{{this._id}}'>
+                                <a href='http://localhost:3000/showcases/showcaseInfo/{{this._id}}'>
                                     <img class="media-object user-Pic" src={{this.photoArr.[0]}} alt="UserPic">
                                 </a>
                             </div>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading postTopic"><a class="jumpToPost" id={{this._id}} href='http://localhost:3000/posts/postInfo/{{this._id}}'>{{this.topic}}</a></h4>
+                            <h4 class="media-heading postTopic"><a class="jumpToPost" id={{this._id}} href='http://localhost:3000/showcases/showcaseInfo/{{this._id}}'>{{this.topic}}</a></h4>
                             <p class="AllContent">{{this.content}}</p>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
             <div role="tabpanel" class="tab-pane" id="comments">
                 <ol>
                     {{#each allComments}}
-                        <li style="font-size: large"><a class="PostIdList" href="http://localhost:3000/posts/postInfo/{{this.postId}}">{{this.content}}</a></li>
+                        <li style="font-size: large"><a class="PostIdList" href="http://localhost:3000/showcases/showcaseInfo/{{this.postId}}">{{this.content}}</a></li>
                         <hr/>
                     {{/each}}
                 </ol>

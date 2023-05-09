@@ -113,7 +113,7 @@ async function removeReport(reportId) {
    
     const reportObjId = ObjectId.createFromHexString(reportId);
     const reportData = await reports()
-    const checkDelete = await reportData.removeOne({ _id: reportObjId });
+    const checkDelete = await reportData.deleteOne({ _id: reportObjId });
 
     if (checkDelete.deletedCount === 0) {
         throw new Error(`Can not delete report with the id of ${reportId}`);

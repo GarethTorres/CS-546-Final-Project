@@ -17,7 +17,7 @@ We have 10 properties in the showcase collection
 10.date:Date object
 */
 
-async function createShowcase(topic, userId, description, content, photoArr,tagArr) {
+async function createShowcase(topic, userId, content,tagArr) {
     //This function needs to interact with the user collection, and when a showcase is created, the user's showcaseID needs to add a piece of data
     
     if (!topic) {
@@ -40,15 +40,6 @@ async function createShowcase(topic, userId, description, content, photoArr,tagA
         // That userId parameter should be proper type (string). If not, throw an error.
         }
 
-    else if (!description) {
-        throw new Error('That description parameter should exists');
-        // That description  parameter exists and is of the proper type (string). If not, throw an error.
-        }
-        
-    else if (typeof description !== "string") {
-        throw new Error('That description parameter should be proper type (string)');
-        // That description parameter should be proper type (string). If not, throw an error.
-        }
 
     else if (!content) {
         throw new Error('That topic parameter should exists');
@@ -69,16 +60,14 @@ async function createShowcase(topic, userId, description, content, photoArr,tagA
         throw new Error('That Array parameter should be proper type (string)');
         // That tagArr parameter should be proper type (string). If not, throw an error.
         }    
-    if (!photoArr || !Array.isArray(photoArr))
-        throw "You must provide an array of photos"
+    
     const showcaseCollection = await showcases();
 
     let newShowcase = {
         topic: topic,
         userId: userId,
-        description: description,
+        
         content: content,
-        photoArr: photoArr,
         commentIdArr: [],
         tagArr: tagArr,
         likeCount: [],
@@ -214,23 +203,26 @@ async function addViewCount(showcaseId) {
     if (updatedInfo.modifiedCount === 0) {
         throw 'Add the viewCount successfully failed';
     }
-    return await getshowcaseById(showcaseId);
+    return await getShowcaseById(showcaseId);
 }
 
 async function removeShowcase(showcaseId) {
 
     if (!showcaseId || typeof showcaseId !== "string") throw 'Please provide a valid showcase id';
-
-    await removeAllCommentsInShowcase(showcaseId);//delete the data in the comment collection
-
+    
+    
+    
     const showcaseObjId = ObjectId.createFromHexString(showcaseId);
     const showcaseCollection = await showcases();
+    console.log(showcaseObjId)
     const showcaseInfo = await getShowcaseById(showcaseId);
-    const deletionInfo = await showcaseCollection.removeOne({ _id: showcaseObjId });
+    console.log(showcaseInfo)
+    const deletionInfo = await showcaseCollection.deleteOne({ _id: showcaseObjId });
+    console.log(deletionInfo)
     if (deletionInfo.deletedCount === 0) {
         throw `Delete the band with id of ${showcaseId} failed`;
     }
-
+    
     await users.removeShowcaseFromUser(showcaseInfo.userId, showcaseId);//call the method in the user collection to remove the showcase id
 
     return true;
@@ -276,14 +268,13 @@ async function removeAllCommentsInShowcase(showcaseId) {//the method will delete
     
     if (!showcaseId || typeof showcaseId !== "string")
         throw 'Please should input a string as the showcaseId';
-
+        
     const commentCollection = await comments();
     const deletionInfo = await commentCollection.remove({ showcaseId: showcaseId });
-    
+    console.log("wwww")
     if (deletionInfo.deletedCount === 0) {
         throw `Delete the comment failed`;
     }
-    
     return true;
 }
 

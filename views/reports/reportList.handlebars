@@ -18,7 +18,7 @@
         <ul>
             <li class="reportList" >ReportId: <span>{{this._id}}</span></li>
             <li class="reportList">Reporter's userId: {{this.userId}}</li>
-            <li class="reportList">PostId: <a href='http://localhost:3000/posts/postInfo/{{this.postId}}'><span>{{this.postId}}</span></a></li>
+            <li class="reportList">ShowcaseId: <a href='http://localhost:3000/showcases/showcaseInfo/{{this.postId}}'><span>{{this.postId}}</span></a></li>
             <li class="reportList">Reasons: {{this.reasons}}</li>
             <br/>
             <div style="text-align: center">
@@ -67,7 +67,7 @@
             let sonspan=sonli[0].getElementsByTagName("span");
             let reportId=sonspan[0].innerText
             var xhr = new XMLHttpRequest();
-            xhr.open('post', 'http://localhost:3000/posts/removeReport');
+            xhr.open('post', 'http://localhost:3000/showcases/removeReport');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
             xhr.send('reportId='+reportId);
             xhr.onload = function () {
@@ -86,7 +86,7 @@
             let sonspan2=sonli[2].getElementsByTagName("span");
             let postId=sonspan2[0].innerText
             var xhr = new XMLHttpRequest();
-            xhr.open('post', 'http://localhost:3000/posts/removeReportAndPost');
+            xhr.open('post', 'http://localhost:3000/showcases/removeReportAndPost');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
             xhr.send('reportId='+reportId+'&postId='+postId);
             xhr.onload = function () {
