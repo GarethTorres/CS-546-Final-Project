@@ -1,7 +1,7 @@
 {
     "name": "cs-546-final-project",
     "version": "1.0.0",
-    "description": "Clothes Forum",
+    "description": "Artist Showcase",
     "main": "app.js",
     "type": "module",
     "scripts": {
@@ -9,7 +9,7 @@
         "start": "node app.js",
         "seed": "node ./tasks/seed.js"
     },
-    "author": "add all our names here",
+    "author": "Group_27",
     "license": "MIT",
     "dependencies": {
         "bcrypt": "^5.1.0",
