@@ -1,15 +1,15 @@
-import mongoCollections from '../config/mongoCollections';
+import { showcases, comments } from '../config/mongoCollection.js';
 import { ObjectId } from 'mongodb';
-const { showcases, comments } = mongoCollections;
-import usersCollection from "./users.js";
+import * as users from "./users.js"
+
 
 /*
 We have 10 properties in the showcase collection
 1._id(ShowcaseId):ObjectID
 2.userId:string
-3.title:string
+3.topic:string
 4.description:string
-5.article:string
+5.content:string
 6.commentIdArr:arr[string of commentId]
 7.tagArr:array[string of tags]
 8.likeCount[string of userId]
@@ -17,15 +17,15 @@ We have 10 properties in the showcase collection
 10.date:Date object
 */
 
-async function createShowcase(title, userId, description, article, tagArr) {
+async function createShowcase(topic, userId, description, content, photoArr,tagArr) {
     //This function needs to interact with the user collection, and when a showcase is created, the user's showcaseID needs to add a piece of data
     
-    if (!title) {
+    if (!topic) {
         throw new Error('That title parameter should exists');
         // That title  parameter exists and is of the proper type (string). If not, throw an error.
         }
     
-    else if (typeof title !== "string") {
+    else if (typeof topic !== "string") {
         throw new Error('That title parameter should be proper type (string)');
         // That title parameter should be proper type (string). If not, throw an error.
         }
@@ -50,14 +50,14 @@ async function createShowcase(title, userId, description, article, tagArr) {
         // That description parameter should be proper type (string). If not, throw an error.
         }
 
-    else if (!article) {
-        throw new Error('That article parameter should exists');
+    else if (!content) {
+        throw new Error('That topic parameter should exists');
         // That article  parameter exists and is of the proper type (string). If not, throw an error.
         }
             
-    else if (typeof article !== "string") {
-        throw new Error('That article parameter should be proper type (string)');
-        // That article parameter should be proper type (string). If not, throw an error.
+    else if (typeof content !== "string") {
+        throw new Error('That topic parameter should be proper type (string)');
+        // That tpoic parameter should be proper type (string). If not, throw an error.
         }    
 
     else if (!tagArr) {
@@ -69,14 +69,16 @@ async function createShowcase(title, userId, description, article, tagArr) {
         throw new Error('That Array parameter should be proper type (string)');
         // That tagArr parameter should be proper type (string). If not, throw an error.
         }    
-
+    if (!photoArr || !Array.isArray(photoArr))
+        throw "You must provide an array of photos"
     const showcaseCollection = await showcases();
 
     let newShowcase = {
-        title: title,
+        topic: topic,
         userId: userId,
         description: description,
-        article: article,
+        content: content,
+        photoArr: photoArr,
         commentIdArr: [],
         tagArr: tagArr,
         likeCount: [],
@@ -92,7 +94,7 @@ async function createShowcase(title, userId, description, article, tagArr) {
     const newId = insertInfo.insertedId;
     const showcaseCreated = await getShowcaseById(newId.toHexString());
 
-    await usersCollection.addShowcaseToUser(userId, newId.toHexString());
+    await users.addShowcaseToUser(userId, newId.toHexString());
     //call the method in the user collection
 
     return showcaseCreated;
@@ -157,14 +159,14 @@ async function getShowcaseByMultTag(tags) {
     return ShowcaseGoal;
 }
 
-async function editArticle(id, newArticle) {
+async function editContent(id, newContent) {
     
     if (!id || typeof id !== "string") throw 'Please provide an id to search';
-    if (!newArticle || typeof newArticle !== "string") throw 'Please provide the new article to update';
+    if (!newContent || typeof newContent !== "string") throw 'Please provide the new article to update';
     
     const objId = ObjectId.createFromHexString(id);
     const showcaseCollection = await showcases();
-    const updatedInfo = await showcaseCollection.updateOne({ _id: objId }, { $set: { article: newArticle } });
+    const updatedInfo = await showcaseCollection.updateOne({ _id: objId }, { $set: { content: newContent } });
     
     return await getShowcaseById(id);
 }
@@ -205,7 +207,7 @@ async function addViewCount(showcaseId) {
     if (!showcaseId || typeof showcaseId !== "string") throw 'Please provide a showcase id';
     
     const showcaseObjId = ObjectId.createFromHexString(showcaseId);
-    const showcaseGoal = await getshowcaseById(showcaseId);
+    const showcaseGoal = await getShowcaseById(showcaseId);
     const showcaseCollection = await showcases();
     const updatedInfo = await showcaseCollection.updateOne({ _id: showcaseObjId }, { $set: { viewCount: showcaseGoal.viewCount + 1 } });
     
@@ -223,13 +225,13 @@ async function removeShowcase(showcaseId) {
 
     const showcaseObjId = ObjectId.createFromHexString(showcaseId);
     const showcaseCollection = await showcases();
-    const showcaseInfo = await getshowcaseById(showcaseId);
+    const showcaseInfo = await getShowcaseById(showcaseId);
     const deletionInfo = await showcaseCollection.removeOne({ _id: showcaseObjId });
     if (deletionInfo.deletedCount === 0) {
         throw `Delete the band with id of ${showcaseId} failed`;
     }
 
-    await usersCollection.removeshowcaseFromUser(showcaseInfo.userId, showcaseId);//call the method in the user collection to remove the showcase id
+    await users.removeShowcaseFromUser(showcaseInfo.userId, showcaseId);//call the method in the user collection to remove the showcase id
 
     return true;
 }
@@ -241,7 +243,7 @@ async function addCommentIdToShowcase(showcaseId, commentId) {
     
     const showcaseObjId = ObjectId.createFromHexString(showcaseId);
     const showcaseCollection = await showcases();
-    const showcaseGoal = await getshowcaseById(showcaseId);
+    const showcaseGoal = await getShowcaseById(showcaseId);
     showcaseGoal.commentIdArr.push(commentId);
     const updatedInfo = await showcaseCollection.updateOne({ _id: showcaseObjId }, { $set: { commentIdArr: showcaseGoal.commentIdArr } });
     // console.log(updatedInfo);
@@ -256,7 +258,7 @@ async function removeCommentIdFromShowcase(showcaseId, commentId) {
     
     const showcaseObjId = ObjectId.createFromHexString(showcaseId);
     const showcaseCollection = await showcases();
-    const showcaseGoal = await getshowcaseById(showcaseId);
+    const showcaseGoal = await getShowcaseById(showcaseId);
     const temp = [];
     
     for (let i = 0; i < showcaseGoal.commentIdArr.length; i++) {
@@ -292,12 +294,13 @@ export {
     getShowcaseByMultTag,
     getShowcaseByOneTag,
     getShowcaseByString,
-    editArticle,
+    editContent,
     addLikeCount,
     addViewCount,
     removeShowcase,
     addCommentIdToShowcase,
     removeCommentIdFromShowcase,
-    removeAllCommentsInShowcase
+    removeAllCommentsInShowcase,
+    
 }
 

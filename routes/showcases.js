@@ -1,11 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const data = require("../data");
-const showcaseData = data.showcases;
-const userData = data.users;
-const commentData = data.comments;
-const reportData = data.reports;
-
+import express from "express";
+import { Router } from "express";
+import { users as userData } from '../data/index.js';
+import { showcases as showcaseData } from '../data/index.js';
+import { comments as commentData } from '../data/index.js';
+import { reports as reportData } from '../data/index.js';
+const router = Router();
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
@@ -19,7 +18,7 @@ router.get('/showcaseInfo/:id', async (req, res) => {
         await showcaseData.addViewCount(req.params.id);//Each time this address is accessed, viewCount++
         let showcaseInfo = await showcaseData.getShowcaseById(req.params.id);
         let temp = await userData.getUserById(showcaseInfo.userId);
-        showcaseInfo.nickname = temp.nickname;
+        showcaseInfo.username = temp.username;
         let commentsInfo = [];
         for (let i = 0; i < showcaseInfo.commentIdArr.length; i++) {
             let thisComment = await commentData.getCommentById(showcaseInfo.commentIdArr[i]);

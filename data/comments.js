@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
-import { comments } from '../config/mongoCollections';
+import { comments } from '../config/mongoCollection.js';
 import { addCommentIdToShowcase, removeCommentIdFromShowcase } from './showcases.js';
-import showcasesCollection from './showcases.js';
+import * as showcases from "./showcases.js"
 
 async function getCommentById(id) {
 
@@ -92,7 +92,7 @@ async function addComment(showcaseId, userId, content) {
     const newCommentId = insertInfo.insertedId;
     const commentCreated = await getCommentById(newCommentId.toHexString());
 
-    await showcasesCollection.addCommentIdToShowcase(showcaseId, newCommentId.toHexString());
+    await showcases.addCommentIdToShowcase(showcaseId, newCommentId.toHexString());
 
     return commentCreated;
 
@@ -120,7 +120,7 @@ async function removeComment(showcaseId, commentId) {
         // /That comment parameter should be proper type (string). If not, throw an error.
     }
 
-    await showcasesCollection.removeCommentIdFromShowcase(showcaseId, commentId);
+    await showcaseCollection.removeCommentIdFromShowcase(showcaseId, commentId);
 
     const commentObjId = ObjectId.createFromHexString(commentId);
     const commentCollection = await comments();

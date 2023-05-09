@@ -1,9 +1,9 @@
-const userRoutes = require("./users");
-const showcaseRoutes = require("./showcases");
-const commentRoutes = require("./comments");
-const reportRoutes = require("./reports");
-const homePageRoutes = require("./homePage");
-const path = require('path');
+import userRoutes from "./users.js";
+import showcaseRoutes from "./showcases.js";
+import commentRoutes from "./comments.js";
+import reportRoutes from "./reports.js";
+import homePageRoutes from "./homePage.js";
+import path from 'path';
 
 const constructorMethod = app => {
     app.use("/users", userRoutes);

@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import data from "../data/index.js";
+import * as data from "../data/index.js";
 const reportData = data.reports;
 const userData = data.users;
 const showcaseData = data.showcases;

@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { reports } from '../config/mongoCollections';
+import { reports } from '../config/mongoCollection.js';
 
 async function getAllReports() {
 

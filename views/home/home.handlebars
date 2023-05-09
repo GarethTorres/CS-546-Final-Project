@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HomePage</title>
+    
+</head>
+<body>
+
+<div class="container">
+    <main class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="container">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img class="img-ad" src="../../public/image/cat.jpg" alt="...">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="img-ad" src="../../public/image/hillside.jpg" alt="...">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img class="img-ad" src="../../public/image/Robot.jpg" alt="...">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="row" style="margin-left: 30px">
+
+
+            <div class="col-sm-8">
+                {{#each postArr}}
+                    <div class="media post-part">
+                        <div class="media-left ">
+                            <div class="photoContainer">
+                                <a href='http://localhost:3000/showcases/postInfo/{{this._id}}'>
+                                    <img class="media-object user-Pic" src={{this.photoArr.[0]}}>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading postTopic"><a class="jumpToPost" id={{this._id}} href="#">{{this.topic}}</a></h4>
+                            <p class="AllContent">{{this.content}}</p>
+                        </div>
+                    </div>
+                {{else}}
+                        <div>
+                            <h2 class="noPost">Oops! No post.</h2>
+                        </div>
+                {{/each}}
+            </div>
+        </div>
+        <br/>
+        <hr>
+        <br/>
+
+
+        {{#if userLogin}}
+            <div id="addNewPost">
+            <form id="static-form" method="post" action="http://localhost:3000/homePage/createShowcase" enctype="multipart/form-data">
+                <div class="row">
+                    <h4 id="Guide">Add new Post here</h4>
+                    <div class="col-sm-8">
+                        <input name="topic" type="text" id="topicId" class="form-control" placeholder="Topic" value="" aria-describedby="basic-addon1">
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="col-sm-8">
+                        <textarea name="content" class="form-control" id="contentId" cols="74" rows="6" placeholder="Say something..." value=""></textarea>
+                    </div>
+                    <div class="all-checkbox col-sm-4">
+                        <br/>
+                        <p class="noPost">Choose "tags" for your post</p>
+                        <p>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check1" value="Nature">
+                                <label for="check1">Nature</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check2" value="Scenery">
+                                <label for="check2">Scenery</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check3" value="Original">
+                                <label for="check3">Original</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check4" value="Object">
+                                <label for="check4">Object</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check5" value="Oil_painting">
+                                <label for="check5">Oil_painting</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check6" value="Character">
+                                <label for="check6">Character</label>
+                            </label>&nbsp;
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check7" value="AI-generated">
+                                <label for="check7">AI-generated</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check8" value="Male">
+                                <label for="check8">Male</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check9" value="Female">
+                                <label for="check9">Female</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check10" value="Watercolor-painting">
+                                <label for="check10">Watercolor-painting</label>
+                            </label>
+                            <label class="checkbox-inline">
+                                <input name="tag" type="checkbox" id="check11" value="Animal">
+                                <label for="check11">Animal</label>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+
+                <br/>
+                <div>
+                    <label class="btn btn-default fileinput-button">
+                        <span>Choose photos</span>
+                        <input name="photoArr" id="addImg" type="file" accept="image/jpg, image/png, image/jpeg, image/gif, image/tiff" multiple>
+                    </label>
+                    
+                </div>
+                <div>
+                    <input id="addNewPostButton" name="submit" type="submit" class="btn AllButton" value="submit" data-toggle="button" aria-pressed="false" autocomplete="off">
+                </div>
+            </form>
+                <p style="margin-top: 3px; color: #b52818" id="picTips"></p>
+        {{else}}
+            <h4 class="noPost" id="addnewPosttip">You must Login to add new post here.</h4>
+        {{/if}}
+    </div>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script type="text/javascript">
+
+    
+    var form = document.getElementById('static-form');
+
+    if(form){
+        var formData = new FormData(form);
+    
+    var file = document.getElementById('addImg')
+
+    
+    var fileCount = 0;
+    $('#picTips').hide();
+    
+    
+    file.onchange = function () {
+        for (let i = 0; i < this.files.length; i++) {
+            formData.append('photo' + i, this.files[i]); 
+            fileCount ++;
+        }
+        if(fileCount == 1){
+            $('#picTips').text('You have chosen '+fileCount+' photo');
+            $('#picTips').show();
+            
+        } else if(fileCount > 1 && fileCount <=3){
+            $('#picTips').text('You have chosen '+fileCount+' photos');
+            $('#picTips').show();
+        } else {
+            $('#picTips').text('You can only upload 3 photos at most');
+            $('#picTips').show();
+        }
+        
+    }
+    }
+
+
+    
+    $('#addNewPostButton').click(function () {
+    var xhr = new XMLHttpRequest();
+    var tagArr = [];
+    $('input[type="checkbox"]:checked').each(function (index) {
+        tagArr[index] = $(this).val();
+    })
+    let JSONData = JSON.stringify(tagArr);
+
+    var formData = new FormData(form); 
+    formData.set('tagArr', JSONData);
+    formData.set("topic", $('#topicId').val());
+    formData.set("content", $('#contentId').val());
+    formData.delete('tag');
+    formData.delete('photoArr');
+    
+    
+    var fileInput = document.getElementById('addImg');
+    for (let i = 0; i < fileInput.files.length; i++) {
+        formData.append('photo' + i, fileInput.files[i]);
+    }
+    xhr.open('post', 'http://localhost:3000/homePage/createShowcase');
+    xhr.send(formData);
+    xhr.onload = function () {
+        console.log(xhr.responseText);
+        // alert("Succeed!")
+        var Timeout = setTimeout(function () {
+            window.location.reload();
+        }, 500);
+    }
+})
+
+
+    
+    $('.jumpToPost').click(function () {
+
+        var url = `http://localhost:3000/posts/postInfo/${$(this).attr("id")}`;
+
+        console.log(url);
+        var ID = $(this).attr("id");
+        console.log(ID);
+
+        var selector = `#${ID}`
+
+        $(selector).attr('href', url);
+    })
+
+
+    $('.user-Pic').each(function () {
+        if(!$(this).attr("src")){
+            $(this).attr("src", "../../public/images/cat.png");
+        }
+    })
+</script>
+</body>
+</html>

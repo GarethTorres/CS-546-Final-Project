@@ -1,0 +1,162 @@
+<body>
+    {{#if userLogin.Admin}}
+    <div>
+        <h1 style="color: #b52818; text-align: center">Welcome! Honorable administrator</h1>
+        <p style="text-align: center">
+            <button class="btn btn-default" id="toReportList">ReportList</button>
+            <button class="btn btn-default" id="toStatistic">Statistics of all DataBase</button>
+        </p>
+    </div>
+    {{/if}}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <br/>
+            <form action="/users/account" method="post">
+                <div class="form-group">
+                    <label class="noPost" for="username">Your Username:</label>
+                    <p class="usercenterName"> {{username}}</p>
+                    <input type="username" class="form-control" id="username" name="username" placeholder="Your new Username">
+                    <br>
+                    <input type="submit" id="upUButton" class="form-control button btn btn-danger" value="Update Username">
+                    <br>
+                </div>
+            </form>
+            <div class="rightMsg">
+                {{#unless status}}
+                <p>{{success1}}</p >
+                {{/unless}}
+            </div>
+            <div class="wrongMsg">
+                {{#unless status}}
+                    <p>{{message1}}</p>
+                {{/unless}}
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-4">
+            <br/>
+            <form action="/users/account" method="post">
+                <div class="form-group">
+                    <label class="noPost" for="password">New Password:</label><br>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Your new Password">
+                    <br>
+                    <label class="noPost" for="Cpassword">Confirm Password:</label><br>
+                    <input type="password" class="form-control" id="Cpassword" name="Cpassword" placeholder="Confirm new Password">
+                    <br>
+                    <input type="submit" id="upPButton" class="form-control button btn" value="Update Password">
+                </div>
+            </form>
+            <div class="rightMsg">
+                {{#unless status}}
+                <p>{{success3}}</p >
+                {{/unless}}
+            </div>
+            <div class="wrongMsg">
+                {{#unless status}}
+                    <p>{{message3}}</p>
+                {{/unless}}
+            </div>
+        </div>
+    </div>
+
+    <div class="wrongMsg">
+        {{#unless status}}
+            <p>{{message4}}</p>
+        {{/unless}}
+    </div>
+
+    <br/>
+    <hr/>
+    <p><h3>Your Posts:</h3></p>
+    <div class="row">
+        <input hidden="hidden" id="position" value="0">
+        {{#if post-list}}
+        {{#each post-list}}
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <div class="usercenterPic-container">
+                    <img class="usercenterPic" src={{this.photoArr.[0]}}>
+                </div>
+                <div class="caption">
+                    <h3><a href='http://localhost:3000/posts/postInfo/{{this._id}}' class="usercenterTopic">{{this.topic}}</a></h3>
+                    <div style="width: 100%; height: 120px;overflow: hidden">
+                        <p>{{this.content}}</p>
+                    </div>
+                    <hr/>
+                    <p class="ButtonContainer">
+                        <button class="btn usercenterBu" onmouseover="this.style.backgroundColor='#962618',this.style.color='#FFFFFF'" onmouseout="this.style.backgroundColor='#b52818', this.style.color='#FFFFFF';" data-toggle="modal" data-target='#{{this._id}}1'>
+                            Edit
+                        </button>&nbsp;&nbsp;
+                        <input class="userDeleteButton btn btn-default" type="button" name={{this._id}} value="Delete">
+
+                        <div class="modal fade" id='{{this._id}}1' tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form method="post" action="http://localhost:3000/posts/editContent">
+                                        <div class="modal-header">
+                                            <input hidden="hidden" name="postId" value={{this._id}}>
+                                            <label for={{this._id}} class="control-label"></label>
+                                            <textarea name="newContent" class="form-control" rows="7" id={{this._id}}>{{this.content}}</textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-danger">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+            {{/each}}
+        {{else}}
+            <h3 id="postTip">You don't have any post now!</h3>
+        {{/if}}
+
+    </div>
+</div>
+<script>
+        let toReportList = document.getElementById("toReportList");
+        if (toReportList) {
+            toReportList.onclick = function () {
+                window.location.href = "http://localhost:3000/reports";
+            }
+        }
+        let toStatistic = document.getElementById("toStatistic");
+        if (toStatistic) {
+            toStatistic.onclick = function () {
+                window.location.href = "http://localhost:3000/reports/statistic";
+            }
+        }
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    let delBtns = document.getElementsByClassName('userDeleteButton');
+
+    for(let i = 0; i < delBtns.length; i++){
+        delBtns[i].onclick = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open('post', 'http://localhost:3000/posts/delete');
+            let thisPostId = this.name;
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+            let s = `postId=${thisPostId}`;
+            xhr.send(s);
+
+            xhr.onload = function () {
+                let Timeout = setTimeout(function () {
+                    window.location.reload();
+                }, 500);
+            }
+        }
+    }
+
+</script>
+</body>

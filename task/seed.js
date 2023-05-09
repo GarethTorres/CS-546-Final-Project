@@ -1,10 +1,11 @@
-import users from '../data/users.js';
-import comments from '../data/comments.js';
-import showcases from '../data/showcases.js';
-import reports from '../data/reports.js';
-import connection from '../config/mongoConnection.js';
+import * as users from "../data/users.js";
+import * as comments from '../data/comments.js';
+import * as showcases from '../data/showcases.js';
+import * as reports from '../data/reports.js';
+import { dbConnection } from "../config/mongoConnection.js";
+import {closeConnection} from '../config/mongoConnection.js';
 async function main() {
-    const db = await connection();
+    const db = await dbConnection();
     await db.dropDatabase();
     let u1 = await users.createUser("user1","weastrda1","user","user1@gmail.com","6072800001","Alan","Min","virtual","Hoboken","NJ","America");
     let u1_userid = u1._id.toHexString();
@@ -68,12 +69,10 @@ async function main() {
     //comment
     let comment1 = await comments.addComment(s1_showcaseid,u1_userid,"Wonderful! Hope to see more beautiful articles in the future!")
 
-    //report
-
-    let report1 = await reports.addReport(u1_userid,s1_showcaseid,"bloody")
+ 
 
     
-    await db.serverConfig.close();
+    closeConnection()
     console.log('Over');
 }
 

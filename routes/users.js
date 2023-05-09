@@ -1,10 +1,13 @@
-const express = require("express");
-const router = express.Router();
-const data = require("../data");
-const bcrypt = require('bcryptjs');
+import express from "express";
+import { Router } from "express";
+import { users as userData } from '../data/index.js';
+import { showcases as showcaseData } from '../data/index.js';
+import bcrypt from 'bcryptjs';
+
 const saltRounds = 5;
-const userData = data.users;
-const showcaseData = data.showcases;
+
+
+const router = Router();
 
 router.get('/account', async (req, res) => {
 
@@ -50,6 +53,7 @@ router.post('/signin', async (req, res) => {
 		return res.redirect('/homePage');
 	}
 	const { username, password } = req.body;
+	
 	const allUser = await userData.getAllUsers();
 
 	for (let x of allUser)
@@ -57,8 +61,10 @@ router.post('/signin', async (req, res) => {
 
 		if(username == x.username)
         {
-			if(await bcrypt.compare(password, x.password))   
+
+			if(password== x.password)  
             {
+	
 				req.session.userId = x._id.toHexString(); 
                 return res.redirect('/homePage');
 			}
@@ -80,7 +86,7 @@ router.get('/signup', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
 
-	const { username,password} = req.body;
+	const { username,password,email,genre,phone_number,firstName,lastName,organization,city,state,country} = req.body;
 
 	try{
 		if (!username) {
@@ -89,15 +95,9 @@ router.post('/signup', async (req, res) => {
 		if (!password[0]) {
 			throw `Please provide a valid password`
 		}
-		if (!password[1]) {
-			throw `Please check the password you inputted`
-		}
-		if(password[0]!=password[1])
-		{
-			throw `Password doesn't match`
-		}
-  		const hash = await bcrypt.hash(password[0], saltRounds);
-		const newUser = await userData.createUser(username,hash);
+		
+  		
+		const newUser = await userData.createUser(username,password,email,genre,phone_number,firstName,lastName,organization,city,state,country);
 
 		req.session.userId = newUser._id.toHexString(); 
         return res.redirect('/homePage');
@@ -153,8 +153,8 @@ router.post('/account', async (req, res) => {
 			success1 ="Username has been updated";
 		}else if(password)
 		{
-			const hash = await bcrypt.hash(password, saltRounds);
-			await userData.editPassword(userId, hash );
+			
+			await userData.editPassword(userId, password );
 			success3 ="Password has been updated";
 		}
 		else throw`Please use different inputs before continue`;

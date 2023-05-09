@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< Updated upstream
 
 <head>
     <meta charset="utf-8">
@@ -44,3 +45,140 @@
 </body>
 
 </html>
+=======
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sharing Your Match of Clothes</title>
+
+    <link rel="icon" href="../../public/images/cat.png" >
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/css/main.css">
+    </head>
+
+    <body>
+    <div class="bg-color">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:3000/homePage"><span class="glyphicon glyphicon-sunglasses" aria-hidden="true"></span></a></li>
+                </ul>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <!--  Search  -->
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input id="searchContent" type="text" class="form-control" placeholder="Search Here">
+                        </div>
+                        <a id="searchButton" href="http://localhost:3000/homePage" class="btn">Search</a>
+
+                    </form>
+
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kind <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="mainA"><a href="http://localhost:3000/homePage/tag?searchTag=Character">Character</a></li>
+                                <li><a href="http://localhost:3000/homePage/tag?searchTag=Object">Object</a></li>
+                                <li><a href="http://localhost:3000/homePage/tag?searchTag=Nature">Nature</a></li>
+                                <li><a href="http://localhost:3000/homePage/tag?searchTag=Scenery">Scenery</a></li>
+                                <li><a href="http://localhost:3000/homePage/tag?searchTag=Animal">Animal</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genre <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://localhost:3000/homePage/tag?searchTag=Watercolor-painting">Watercolor-painting</a></li>
+                                <li><a href="http://localhost:3000/homePage/tag?searchTag=Oil_painting">Oil_painting</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Origin <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://localhost:3000/homePage/tag?searchTag=AI-generated">AI-generated</a></li>
+                                <li><a href="http://localhost:3000/homePage/tag?searchTag=Original">Original</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gender <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="http://localhost:3000/homePage/tag?searchTag=Male">Male</a></li>
+                                <li><a href="http://localhost:3000/homePage/tag?searchTag=Female">Female</a></li>
+ 
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        {{#if userLogin}}
+                            <span>
+                                <span id="userNAME">Hello, <a href="/users/account"> {{userLogin.username}}</a></span>&nbsp;&nbsp;
+                            </span>
+                            <button type="button" onclick="window.location.href='/users/signout'" class="btn AllButton navbar-btn">Sign out</button>
+                        {{else}}
+                            <button type="button" onclick="window.location.href='/users/signin'" class="btn btn-default navbar-btn">Sign in</button>
+                            <button type="button" onclick="window.location.href='/users/signup'" class="btn AllButton navbar-btn">Sign up</button>
+                        {{/if}}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div>
+            {{{body}}}
+        </div>
+        <hr/>
+    </div>
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        
+        $('#to-top').click(function () {
+            
+            $page = $('html, body')
+            var distance = $('html').scrollTop() + $('body').scrollTop()
+            var time = 250
+            var interval = 25
+            var itemDistance = distance/(time/interval)
+
+            var intervalId = setInterval(function () {
+                distance -= itemDistance
+                if(distance <= 0){
+                    distance = 0
+                    clearInterval(intervalId)
+                }
+                $page.scrollTop(distance)
+            }, interval)
+        })
+
+       
+        $('#searchButton').click(function () {
+            let typeIn = $('#searchContent').val();
+            var url;
+            if(typeIn){
+                url = `http://localhost:3000/homePage/search?searchString=${typeIn}`;
+            }else {
+                url = "http://localhost:3000/homePage";
+            }
+            $('#searchButton').prop('href', url)
+        })
+    </script>
+    </body>
+</html>
+>>>>>>> Stashed changes

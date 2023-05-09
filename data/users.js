@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { users } from '../config/mongoCollections';
+import { users } from '../config/mongoCollection.js';
 
 async function createUser(username, password, genre, email, phone_number, firstName, lastName, organization, city, state, country) {
 
@@ -278,7 +278,7 @@ async function addShowcaseToUser(userId, showcaseId) {
 
     const userCollection = await users();
     const updateInfo = await userCollection.updateOne(
-        { _id: ObjectId(userId) },
+        { _id: new ObjectId(userId) },
         { $addToSet: { showcases: showcaseId } }
     );
 
@@ -292,7 +292,7 @@ async function removeShowcaseFromUser(userId, showcaseId) {
 
     const userCollection = await users();
     const updateInfo = await userCollection.updateOne(
-        { _id: ObjectId(userId) },
+        { _id: new ObjectId(userId) },
         { $pull: { showcases: showcaseId } }
     );
     
@@ -309,7 +309,8 @@ export {
     editPassword,
     addShowcaseToUser,
     removeShowcaseFromUser,
-    setAdminAccess
+    setAdminAccess,
+    
 }
 
 

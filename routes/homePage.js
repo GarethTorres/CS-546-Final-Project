@@ -1,11 +1,15 @@
-const express = require("express");
-const path = require("path")
+import express from 'express';
+import path from 'path';
+
+import { Router } from "express";
+import { users as userData } from '../data/index.js';
+import { showcases as showcaseData } from '../data/index.js';
+import { comments as commentData } from '../data/index.js';
+import { reports as reportData } from '../data/index.js';
+import formidable from 'formidable';
+
 const router = express.Router();
-const data = require("../data");
-const showcaseData = data.showcases;
-const userData = data.users;
-const commentData = data.comments;
-const formidable = require('formidable');
+
 
 
 router.get('/', async (req, res) => {
@@ -88,50 +92,73 @@ router.get("/search", async (req, res) => {
 })
 
 router.post('/createShowcase', async (req, res) => {
-
     let userLogin = null;
-
+  
     if (req.session) {
-
-        if (req.session.userId)
-            userLogin = await userData.getUserById(req.session.userId);
-
+      if (req.session.userId) {
+        userLogin = await userData.getUserById(req.session.userId);
+      }
     }
-
+  
     const form = new formidable.IncomingForm();
-
+  
     form.uploadDir = path.join(__dirname, '../', 'public', 'images');
     form.keepExtensions = true;
-
+  
     form.parse(req, async (err, fields, files) => {
-        
-        try {
-            if (!fields)
-                throw "Data needed to create showcase";
-            if (!fields.title)
-            //title
-                throw "Title needed to create showcase"
-            if (!fields.article)
-            //article
-                throw "Article needed to create showcase"
-            if (!fields.tagArr)
-            //tag
-                throw "TagArr needed to create showcase";
-            let tagArr = JSON.parse(fields.tagArr);
-            if (!Array.isArray(tagArr))
-                throw "Tag needed to create showcase";
-
-            let newShowcase = await showcaseData.createShowcase(
-                fields.title,
-                req.session.userId,
-                fields.article,
-                tagArr
-            )
-            res.send(newShowcase);
-        } catch (error) {
-            res.status(404).send(error);
+      try {
+        if (!fields) {
+          throw "Data needed to create showcase";
         }
-    })
-});
+        if (!fields.topic) {
+          throw "Title needed to create showcase"
+        }
+        if (!fields.content) {
+          throw "Article needed to create showcase"
+        }
+  
+        let tagArr = [];
+        if (fields.tagArr) {
+          tagArr = JSON.parse(fields.tagArr);
+          if (!Array.isArray(tagArr)) {
+            throw "TagArr should be an array";
+          }
+        }
+  
+        let photoArr = [];
+        
+        if (files.photo0) {
+          const fileName = files.photo0.name;
+          const filePath = path.join(__dirname, '..', 'public', 'images', fileName);
+          await fs.promises.copyFile(files.photo0.path, filePath);
+          console.log(fileName)
+          photoArr.push(`http://localhost:3000/public/images/${fileName}`);
+        }
+        if (files.photo1) {
+          photoArr.push("http://localhost:3000/public/images/" + files.photo1.path.split('images\\')[1]);
+        }
+        if (files.photo2) {
+          photoArr.push("http://localhost:3000/public/images/" + files.photo2.path.split('images\\')[1]);
+        }
+  
+        let newShowcase = await showcaseData.createShowcase(
+          fields.topic,
+          req.session.userId,
+          fields.content,
+          photoArr,
+          tagArr
+        );
+  
+        res.send(newShowcase);
+      } catch (error) {
+        res.status(404).send(error);
+      }
+    });
+  
+    form.on('error', (err) => {
+      console.log(err);
+    });
+  });
+  
 
 export default router;

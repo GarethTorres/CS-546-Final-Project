@@ -1,0 +1,57 @@
+<body>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <p class="welcome">Hi there, Welcome!</p>
+            <br>
+            <form id="signup-form" method="post" action="/users/signup">
+                <div class="form-group">
+                    <p class="noPost" for="text1">Your Username:</p>
+                    <input type="username" class="form-control" id="signupUserName" name="username" placeholder="Username">
+                    <br>
+                    <p class="noPost" for="text1">Your Password:</p>
+                    <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Password">
+                    <br>
+                    <p class="noPost" for="text1">Your Email:</p>
+                    <input type="email" class="form-control" id="signupEmail" name="email" placeholder="Email">
+                    <br>
+                    <p class="noPost" for="text1">Your Genre:</p>
+                    <input type="genre" class="form-control" id="signupGenre" name="genre" placeholder="Genre">
+                    <br>
+                    <p class="noPost" for="text1">Your Phone Number:</p>
+                    <input type="phone_number" class="form-control" id="signupPhone-number" name="phone_number" placeholder="phone_number">
+                    <br>
+                    <p class="noPost" for="text1">Your Firstname:</p>
+                    <input type="firstName" class="form-control" id="signupFirstname" name="firstName" placeholder="firstName">
+                    <br>
+                    <p class="noPost" for="text1">Your Lastname:</p>
+                    <input type="lastName" class="form-control" id="signupLastname" name="lastName" placeholder="lastName">
+                    <br>
+                    <p class="noPost" for="text1">Your organization:</p>
+                    <input type="organization" class="form-control" id="signupOrganization" name="organization" placeholder="organization">
+                    <br>
+                    <p class="noPost" for="text1">Your City:</p>
+                    <input type="city" class="form-control" id="signupCity" name="city" placeholder="city">
+                    <br>
+                    <p class="noPost" for="text1">Your State:</p>
+                    <input type="state" class="form-control" id="signupState" name="state" placeholder="state">
+                    <br>
+                    <p class="noPost" for="text1">Your Country:</p>
+                    <input type="country" class="form-control" id="signupCountry" name="country" placeholder="country">
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn AllButton">Sign up</button>
+                    </div>
+                    {{#unless status}}
+                        <p class="wrongMsg">{{message}}</p>
+                    {{/unless}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</body>

@@ -1,6 +1,6 @@
 import express from 'express';
 const router = express.Router();
-const data = require("../data");
+
 import { comments as commentData } from '../data/index.js';
 import { showcases as showcaseData } from '../data/index.js';
 
@@ -34,10 +34,9 @@ router.post("/", async(req, res) => {
     if (!commentInfo) {
         res.status(400).json({ error: 'You must provide data to create a comment' });
         return;
-      }
-
-    const {title, user, showcase, content} = commentInfo;
-    if (!title || typeof title !== 'string') {
+    }
+    const {topic, user, showcase, content} = commentInfo;
+    if (!topic || typeof topic !== 'string') {
         res.status(400).json({ error: 'You must provide a title(String) for the comment' });
         return;
     }
@@ -55,7 +54,7 @@ router.post("/", async(req, res) => {
     }
 
     try {
-        const newComment = await commentData.addComment(title, user, showcase, content);
+        const newComment = await commentData.addComment(topic, user, showcase, content);
         res.status(200).send(newComment)
     }catch(e){
         res.status(500).json({error:e})

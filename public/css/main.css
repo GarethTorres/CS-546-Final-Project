@@ -1,0 +1,487 @@
+.img-ad {
+    width: 50%;
+    height: auto;
+}
+
+.item {
+    overflow: visible;
+    /*width: 500px;*/
+}
+
+.right{
+    right: 10px;
+    /*width: 70%;*/
+}
+
+.post-part {
+    padding: 15px 25px 25px 55px;
+    float: right;
+}
+
+/*Photos in postlist of home page*/
+.user-Pic {
+    width: 150px;
+    height: auto;
+}
+.photoContainer {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.footer {
+    position:relative;
+    height: 60px;
+    background-color: #e5e5e5;
+    text-align: center;
+    font-size: 14px;
+    line-height: 24px;
+    padding-top: 15px;
+    bottom: 0px;
+    width: 90%;
+}
+
+.footer a {
+    text-decoration: underline;
+    color: #4c4c4c;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    color: #b52818;
+}
+
+.footerButton {
+    color: #4c4c4c;
+    margin: 0;
+    padding: 0;
+    font-size: 110%;
+    border: 1px solid #bbbbbb;
+}
+
+.footerButton:hover {
+    color: #b52818;
+    border: 1px solid #b52818;
+}
+
+#to-top {
+    color: #3c3c3c;
+    text-decoration: none;
+    left: 90%;
+    top: 85%;
+    position: fixed;
+}
+
+#to-top:hover {
+    color: #b52818;
+    cursor: pointer;
+}
+
+#addNewPost {
+    position: absolute;
+    padding-left: 10%;
+}
+/*add new post guide in home page*/
+#Guide {
+    padding-left: 15px;
+    font-weight: normal;
+    color: #4c4c4c;
+}
+
+.fileinput-button {
+    position: relative;
+    display: inline-block;
+    overflow: visible;
+}
+
+.fileinput-button input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+}
+
+#signin-form {
+    margin: 0 auto 10%;
+    padding-right: 200px;
+}
+
+#signup-form {
+    margin: 0 auto 15%;
+    padding-right: 200px;
+}
+
+.all-checkbox {
+    position: relative;
+    width: 90%;
+    font-size: 1em;
+}
+
+.all-checkbox input[type="checkbox"] {
+    opacity: 1;
+}
+
+.all-checkbox label:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    margin-top: -7px;
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 2px;
+    border: 1px solid #4c4c4c;
+    background: #ffffff;
+}
+
+
+.all-checkbox input[type="checkbox"]:checked + label:after {
+    position: absolute;
+    display: inline-block;
+    font-family: 'Font Awesome';
+    content: "\f00c";
+    top: 42%;
+    left: 3px;
+    margin-top: -5px;
+    font-size: 11px;
+    line-height: 1;
+    width: 16px;
+    height: 16px;
+    color: #333;
+
+    font-weight: bold;
+    color: #c0392b;
+}
+
+.all-checkbox input[type="checkbox"]:checked + label {
+    font-weight: bold;
+    color: #c0392b;
+}
+
+.all-checkbox label {
+    cursor: pointer;
+    line-height: 1.5;
+    font-weight: normal;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.all-checkbox label:hover {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+.panel-body {
+    padding: 10px 20px;
+}
+
+.PostTopic {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #c0392b;
+}
+.commentUser {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.PostImg {
+    height: auto;
+    width: 200px;
+    transition: all 0.4s ease-in-out;
+}
+
+.PostImg:hover {
+    transform: scale(1.2);
+}
+
+.alert {
+    margin-top: 30px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.post-imgs {
+    width: 400px;
+    height: auto;
+    overflow: hidden;
+    padding-top: 30px;
+    padding-left: 80px;
+}
+
+.post-glyphicon {
+    float: right;
+    font-size: 1.2em;
+}
+
+.post-time {
+    font-size: 1.2em;
+    color: #9c9c9c;
+    float: right;
+    margin-right: 20px;
+}
+
+.glyphicon:hover {
+    cursor: pointer;
+    color: #c0392b;
+}
+
+.panel-danger {
+    border: 2px solid #c0392b;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#twoButtonsinPost {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#searchButton {
+    text-decoration: none;
+    background-color: #c0392b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+#searchButton:hover {
+    text-decoration: none;
+    background-color: #962618;
+}
+.dropdown-menu>li>a:hover {
+    color: #ffffff;
+    background-color: #c0392b;
+}
+
+#userNAME{
+    font-size: 22px;
+    color: #3c3c3c;
+}
+
+#userNAME>a {
+    font-size: 20px;
+    text-decoration: underline;
+    color: #0c7a6f;
+}
+
+.AllButton {
+     background-color: #0c7a6f;
+     color: #fff;
+}
+.AllButton:hover {
+    background-color: #0c6f7a;
+}
+
+.jumpToPost {
+    font-size: 28px;
+    text-decoration: underline;
+    color: #0c7a6f;
+}
+.jumpToPost:hover {
+    color: #0c6f7a;
+}
+
+.AllContent {
+    font-size: 18px;
+    color: #4d4d4d;
+}
+
+#addNewPost {
+    background-color: rgba(80, 80, 80, 0.03);
+    padding-bottom: 30px;
+    border-radius: 12px;
+    border: rgba(150, 150, 150, 0.09) solid;
+}
+
+.noPost{
+    font-weight: bold;
+    color: #0c7a6f;
+}
+
+.wrongMsg {
+    color: #b30000;
+}
+
+.rightMsg{
+    color: #2eb82e;
+}
+
+.welcome{
+    font-size: 2.5em;
+    color: #0c7a6f;
+}
+
+.normalButton {
+    background-color: #0c7a6f;
+    color: #fff;
+}
+
+#addnewPosttip {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 20px;
+}
+
+.errorMsg {
+    visibility: hidden;
+}
+
+#goBack {
+    text-decoration: none;
+    font-size: large;
+    color: #0c7a6f;
+}
+#goBack:hover {
+    color: #0c6f7a;
+}
+
+.aaa {
+    font-size: 2em;
+}
+
+.reported {
+    color: #0c7a6f;
+    text-decoration: underline;
+}
+.reported:hover {
+    color: #0c6f7a;
+}
+
+#Whyreport {
+    font-size: 2em;
+}
+
+.reportTips {
+    font-size: 22px;
+}
+
+
+#reportSubmit {
+    background-color: #2f80ed;
+    color: white;
+  }
+  #reportSubmit:hover {
+    background-color: #1d3d6c;
+  }
+  
+  #upUButton {
+    background-color: #45a29e;
+    color: white;
+  }
+  #upUButton:hover {
+    background-color: #2c534e;
+  }
+  
+  #upNButton {
+    background-color: #ff6b6b;
+    color: white;
+  }
+  #upNButton:hover {
+    background-color: #8b0000;
+  }
+  
+  #upPButton {
+    background-color: #00b894;
+    color: white;
+  }
+  #upPButton:hover {
+    background-color: #006266;
+  }
+  
+  .usercenterName {
+    font-size: 1.4em;
+  }
+  
+  .usercenterPic {
+    width: 300px;
+    height: auto;
+  }
+  
+  .usercenterPic-container {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .usercenterTopic {
+    font-size: x-large;
+    text-decoration: none;
+    color: #2f80ed;
+  }
+  .usercenterTopic:hover {
+    text-decoration: none;
+    color: #1d3d6c;
+  }
+  
+  .thumbnail {
+    height: 150px;
+  }
+  
+  .ButtonContainer {
+    text-align: center;
+  }
+  
+  .usercenterBu {
+    background-color: #fdcb6e;
+    color: white;
+  }
+  
+  #postTip {
+    text-align: center;
+  }
+  
+  .viewCount {
+    text-align: right;
+    font-size: 12px;
+    color: #bfbfbf;
+  }
+  
+  .glyphicon {
+    color: #2f80ed;
+  }
+  
+  .timeline-Viewport {
+    height: 800px;
+  }
+  
+  .commentDelete {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .reportList {
+    list-style: none;
+    font-size: 16px;
+    padding-left: 400px;
+  }
+  .reportList>a {
+    text-decoration: none;
+    color: #2f80ed;
+  }
+  
+  .BACK {
+    text-decoration: none;
+    color: #2f80ed;
+  }
+  
+  .BACK:hover {
+    text-decoration: none;
+    color: #1d3d6c;
+  }
+  
+  .PostIdList{
+    text-decoration: none;
+    color: #2f80ed;
+  }
+  
+  .PostIdList:hover {
+    text-decoration: none;
+    color: #1d3d6c;
+  }
+  
