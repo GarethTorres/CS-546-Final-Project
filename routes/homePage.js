@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
         for (let i = 0; i < showcaseArr.length; i++) {
             let temp = await userData.getUserById(showcaseArr[i].userId);
-            showcaseArr[i].userNickname = temp.nickname;
+            showcaseArr[i].userUsername = temp.username;
         }
 
         showcaseArr.sort((a,b)=>{
