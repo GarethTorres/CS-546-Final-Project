@@ -21,12 +21,12 @@ async function createShowcase(topic, userId, content,tagArr) {
     //This function needs to interact with the user collection, and when a showcase is created, the user's showcaseID needs to add a piece of data
     
     if (!topic) {
-        throw new Error('That title parameter should exists');
+        throw new Error('That topic parameter should exists');
         // That title  parameter exists and is of the proper type (string). If not, throw an error.
         }
     
     else if (typeof topic !== "string") {
-        throw new Error('That title parameter should be proper type (string)');
+        throw new Error('That topic parameter should be proper type (string)');
         // That title parameter should be proper type (string). If not, throw an error.
         }
 
@@ -42,12 +42,22 @@ async function createShowcase(topic, userId, content,tagArr) {
 
 
     else if (!content) {
-        throw new Error('That topic parameter should exists');
+        throw new Error('That content parameter should exists');
         // That article  parameter exists and is of the proper type (string). If not, throw an error.
         }
             
     else if (typeof content !== "string") {
-        throw new Error('That topic parameter should be proper type (string)');
+        throw new Error('That content parameter should be proper type (string)');
+        // That tpoic parameter should be proper type (string). If not, throw an error.
+        }    
+
+    else if (!description) {
+        throw new Error('That description parameter should exists');
+        // That article  parameter exists and is of the proper type (string). If not, throw an error.
+        }
+                
+    else if (typeof description !== "string") {
+        throw new Error('That description parameter should be proper type (string)');
         // That tpoic parameter should be proper type (string). If not, throw an error.
         }    
 
@@ -66,7 +76,7 @@ async function createShowcase(topic, userId, content,tagArr) {
     let newShowcase = {
         topic: topic,
         userId: userId,
-        
+        description: descriptionId,
         content: content,
         commentIdArr: [],
         tagArr: tagArr,
